@@ -1,4 +1,4 @@
-#https://github.com/surikat/zome-polar-rhombizonahedron jo@surikat.pro
+#https://github.com/surikat/zome-polar-rhombizonahedron jo@redcat.ninja
 
 require 'sketchup.rb'
 include Math
@@ -34,13 +34,9 @@ class RhombiZonaedrePolaire
 	def ending
 		$mo.commit_operation
 		if not $surikat_z_l
-				elap = seconds_2_dhms(Time.now - @t1) 
-			    UI.messagebox("\nSurisquat Zome" <<
-				"\nModélisation de structures minimales" <<
-				"\n\nLogiciel libre - License MIT" <<
-				"\nDéveloppé par Jo - jo@wildsurikat.com" <<
-				"\nhttps://github.com/surikat/surisquat" <<
-				"\n\n Structure généré en " << elap, MB_MULTILINE, "Zome - Surisquat")
+			UI.messagebox("\nZome Creator" <<
+			"\nLogiciel libre développé par Jo - jo@redcat.ninja" <<
+			"\nhttps://github.com/surikat/zome-polar-rhombizonahedron/", "Zome Creator - Logiciel libre")
 			$surikat_z_l = true
 		end
 	end
@@ -178,45 +174,24 @@ class RhombiZonaedrePolaire
 		points=[]
 		pts[0] = Geom::Point3d.new(0,0,0)
 		
-		if($surikat_zome['T_TYPE']=='Zome')
-			1.upto(niveaux){ |i|
-				p_rotate = Geom::Transformation.rotation( pts[0] , Geom::Vector3d.new(0,0,1), i*2*PI/bases )
+		1.upto(niveaux){ |i|
+			p_rotate = Geom::Transformation.rotation( pts[0] , Geom::Vector3d.new(0,0,1), i*2*PI/bases )
 
-				pts[1] = pts[0].transform( vector )
-				pts[3] = pts[1].transform( p_rotate )
-				pts[2] = pts[3].transform( vector )
-				# mb = i*2*PI/bases
-				# UI.messagebox "#{mb.radians}"
-				points[i] = []
-				0.upto(bases-1){ |j| 
-					f_rotate = Geom::Transformation.rotation( Geom::Point3d.new(0,0,0) , Geom::Vector3d.new(0,0,1), j*2*PI/bases)
-					points[i][j] = pts.collect{|p| p.transform(f_rotate)}
-					
-				}
-				pts[0] = pts[3]
-			}
-			rot = Geom::Transformation.rotation [0,0,0], X_AXIS, 180.degrees
-			hauteur_r = points[niveaux-1][0][2][2]
-		end	
-		if($surikat_zome['T_TYPE']=='ZDome')
-		
-			1.upto(niveaux){ |i|
-				p_rotate = Geom::Transformation.rotation( pts[0] , Geom::Vector3d.new(0,0,1), i*2*PI/bases )
+			pts[1] = pts[0].transform( vector )
+			pts[3] = pts[1].transform( p_rotate )
+			pts[2] = pts[3].transform( vector )
+			# mb = i*2*PI/bases
+			# UI.messagebox "#{mb.radians}"
+			points[i] = []
+			0.upto(bases-1){ |j| 
+				f_rotate = Geom::Transformation.rotation( Geom::Point3d.new(0,0,0) , Geom::Vector3d.new(0,0,1), j*2*PI/bases)
+				points[i][j] = pts.collect{|p| p.transform(f_rotate)}
 				
-				pts[1] = pts[0].transform( vector )
-				pts[3] = pts[1].transform( p_rotate )
-				pts[2] = pts[3].transform( vector )
-				points[i] = []
-				0.upto(bases-1){ |j| 
-					f_rotate = Geom::Transformation.rotation( Geom::Point3d.new(0,0,0) , Geom::Vector3d.new(0,0,1), j*2*PI/bases)
-					points[i][j] = pts.collect{|p| p.transform(f_rotate)}
-					
-				}
-				pts[0] = pts[3]
 			}
-			rot = Geom::Transformation.rotation [0,0,0], X_AXIS, 180.degrees
-			hauteur_r = points[niveaux-1][0][2][2]
-		end
+			pts[0] = pts[3]
+		}
+		rot = Geom::Transformation.rotation [0,0,0], X_AXIS, 180.degrees
+		hauteur_r = points[niveaux-1][0][2][2]
 
 		faces = []
 		1.upto(niveaux){ |i|
@@ -283,99 +258,19 @@ class RhombiZonaedrePolaire
 		msg += "\n Nombre Total de Segments: #{@segments_nb} \n"
 		# msg += " Longeur totale des segments: #{segments_lenth} \n"
 		msg += " Nombre de Tirants: #{@tirants_nb} \n"
-		# msg += " Longeur totale des tirants: #{tirants_lenth} \n"
-		# if(params['T_Rapport']=='Complet')
-			# @tirants.each_index{ |k|
-				# msg += "    Niveau #{k+1}: #{params['N_Cotes']} Tirants de #{@tirants[-(k+1)]} \n"
-			# }
-		# end
-		# msg += " Nombre d'Arrêtes: #{@arretes_nb} \n"
-		# msg += " Longeur totale des arrêtes: #{arretes_lenth} \n"
-		# if(params['T_Rapport']=='Complet')
-			# @arretes.each_index{ |k|
-				# if k==params['N_Niveaux']-1
-					# xna = params['N_Cotes']
-				# else
-					# xna = params['M_Cotes']
-				# end
-				# msg += "    Niveau #{k+1}: #{xna} Arrêtes de #{@arretes[-(k+1)]} \n"
-			# }
-		# end
-		# msg += "\n Nombre de Triangles: #{@arretes_nb} \n"
-		# msg += " Aire totale des triangles: #{@dome_top_area.inch}² \n"
-		# if(params['T_Rapport']=='Complet')
-			# level = 1
-			# @triangles.each_index{ |k|
-				# g_t = @triangles[k][0]
-				# g_a = @triangles[k][1]
-				# msg += "    Niveau #{level}     -> #{params['N_Cotes']} Triangles \n"
-				# msg += "        #{params['N_Cotes']} Arrête     -> #{g_a.inch} \n"
-				# msg += "        #{params['N_Cotes']} Tirant     -> #{g_t.inch} \n"
-				# level+=0.5
-			# }
-		# end
-		# msg += "\n Nombre de Tuiles: #{params['N_Cotes']*params['N_Niveaux']} (#{params['N_Cotes']*(params['N_Niveaux']-1)} losanges + #{params['N_Cotes']} triangles) \n"
-		# msg += " Avec chevauchement de tuilage de #{params['L_Tuilage'].inch} \n"
-		# velcro_l = 0.0
-		# level = 1
-		# i = 0
-		# perimar = params['L_Diametre_Arretes']*Math::PI
-		# velcl = perimar*1.5*3
-		# @dome_tiles_area = 0.0
-		# @tiles_triangles.each_index{ |k|
-			# if(k%2==0)
-				# g_t = @tiles_triangles[k][0]
-				# g_a2 = @triangles[k][1]
-				# area = aire_triangle_isocele(g_t,g_a2)
-				# velcro_l += (g_a2*2 + velcl)*params['N_Cotes']
-				# if(k==0)
-					# if(params['T_Rapport']=='Complet')						
-						# msg += "    Niveau #{i+1}     -> #{params['N_Cotes']} Triangles \n"
-						# msg += "      Arrête     -> #{g_a2.inch} \n"
-						# msg += "      Tirant     -> #{g_t.inch} \n"
-					# end
-				# else
-					# g_a1 = @tiles_triangles[k-1][1]
-					# if(params['T_Rapport']=='Complet')						
-						# msg += "     Niveau #{i+1}     -> #{params['N_Cotes']} Cerf-volants \n"
-						# msg += "        Arrête inférieure  -> #{g_a1.inch} \n"
-						# msg += "        Tirant             -> #{g_t.inch} \n"
-						# msg += "        Arrête supérieure  -> #{g_a2.inch} \n"
-					# end
-					# velcro_l += (g_a1*2 + velcl)*params['N_Cotes']
-					# area += aire_triangle_isocele(g_t,g_a1)
-				# end
-				# @dome_tiles_area+=params['N_Cotes'].to_f*area.inch
-				# level+=1
-				# i+=1
-			# end
-		# }
-		# @dome_tiles_area = @dome_tiles_area*$u_inch*1000
-		# msg += "   -> Aire totale des Tuiles: #{@dome_tiles_area.inch}² \n"
-		# msg += "\n Avec un diamètre des arrêtes de #{params['L_Diametre_Arretes'].inch}"
-		# msg += "\n et 1 velcro parallèle + 3 perpendiculaires / arrête "
-		# msg += "\n     -> Longueur totale de velcro nécessaire: #{velcro_l.inch} \n"
 		
 		return msg
 	end
 	def zome_al
 		config = [
-			# ['T_TYPE','ZDome','Type',[["Zome","ZDome"].join("|")]],
-			['T_TYPE','Zome','Type',[["Zome"].join("|")]],
 			['N_Cotes',10,'Côtés de Révolution'],
 			['N_Niveaux',5,'Niveaux en Hauteur'],
 			['L_AngleDeForme',35.2643896827547,'Angle de forme'],
 			['L_Arrete',1.m,'Arrête'],
-			['T_Tirants','Horizontaux','Tirants',[["Horizontaux","Aucun"].join("|")]],
+			['T_Tirants','Horizontaux','Tirants',"Horizontaux|Aucun"],
 			['L_RayonConnecteurs',150.mm,'Rayon des Connecteurs'],
-			['T_Ground','Non','Sol',[["Oui","Non"].join("|")]],
-			['T_Modelisation','Faces','Modélisation',[["Squelette","Faces","Tubes"].join("|")]]
-			# ['T_Tuiles2D','Oui','Tuiles En 2D',[["Non","Oui"].join("|")]],
-			# ['L_Tuilage',50.mm,'Chevauchement Tuiles'],
-			# ['RVB_BACK_FACES','green','Couleurs faces externes'],
-			# ['RVB_BACK_SOL','green','Couleurs sol externes'],
-			# ['RVB_FACES','white','Couleurs faces internes'],
-			# ['RVB_SOL','white','Couleurs sol internes']
+			['T_Ground','Non','Sol',"Oui|Non"],
+			['T_Modelisation','Faces','Modélisation',"Squelette|Faces|Tubes"]
 		]
 		$surikat_zome = {} if not $surikat_zome
 		0.upto(config.length-1){ |i|
@@ -392,7 +287,7 @@ class RhombiZonaedrePolaire
 			if(config[i][3])
 				drops.push config[i][3]
 			else
-				drops.push nil
+				drops.push ''
 			end
 		}
 		begin
@@ -451,20 +346,14 @@ class RhombiZonaedrePolaire
 
 	def zome_ah
 		config = [
-			# ['T_TYPE','ZDome','Type',[["Zome","ZDome"].join("|")]],
-			['T_TYPE','Zome','Type',[["Zome"].join("|")]],
 			['N_Cotes',10,'Côtés de Révolution'],
 			['N_Niveaux',5,'Niveaux en Hauteur'],
 			['L_AngleDeForme',35.2643896827547,'Angle de forme'],
 			['L_Hauteur',3000.mm,'Hauteur au Sommet'],
-			['T_Tirants','Horizontaux','Tirants',[["Horizontaux","Aucun"].join("|")]],
+			['T_Tirants','Horizontaux','Tirants',"Horizontaux|Aucun"],
 			['L_RayonConnecteurs',150.mm,'Rayon des Connecteurs'],
-			['T_Ground','Non','Sol',[["Oui","Non"].join("|")]],
-			['T_Modelisation','Faces','Modélisation',[["Squelette","Faces","Tubes"].join("|")]]
-			# ['T_Tuiles2D','Oui','Tuiles En 2D',[["Non","Oui"].join("|")]],
-			# ['L_Tuilage',50.mm,'Chevauchement Tuiles'],
-			# ['RVB_BACK_FACES','green','Couleurs faces externes'],
-			# ['RVB_FACES','white','Couleurs faces internes']
+			['T_Ground','Non','Sol',"Oui|Non"],
+			['T_Modelisation','Faces','Modélisation',"Squelette|Faces|Tubes"]
 		]
 		$surikat_zome = {} if not $surikat_zome
 		0.upto(config.length-1){ |i|
@@ -481,7 +370,7 @@ class RhombiZonaedrePolaire
 			if(config[i][3])
 				drops.push config[i][3]
 			else
-				drops.push nil
+				drops.push ''
 			end
 		}
 		begin
@@ -524,8 +413,6 @@ class RhombiZonaedrePolaire
 		hypotenus = adjacent/angle_forme
 		oppose = sqrt(hypotenus*hypotenus - adjacent*adjacent)
 		
-		# sinus = oppose/hypotenus
-		# cosinus = adjacent/hypotenus
 		sinus = cos(angle_forme)
 		cosinus = sin(angle_forme)
 		
@@ -551,14 +438,8 @@ class RhombiZonaedrePolaire
 			['L_AngleDeForme',35.2643896827547,'Angle de forme'],
 			['L_Diametre',6000.mm,'Diamètre au sol'],
 			['L_RayonConnecteurs',150.mm,'Rayon des Connecteurs'],
-			['T_Ground','Non','Sol',[["Oui","Non"].join("|")]],
-			['T_Modelisation','Faces','Modélisation',[["Squelette","Faces","Tubes"].join("|")]]
-			# ['T_Tuiles2D','Oui','Tuiles En 2D',[["Non","Oui"].join("|")]],
-			# ['L_Tuilage',50.mm,'Chevauchement Tuiles'],
-			# ['RVB_BACK_FACES','green','Couleurs faces externes'],
-			# ['RVB_BACK_SOL','green','Couleurs sol externes'],
-			# ['RVB_FACES','white','Couleurs faces internes'],
-			# ['RVB_SOL','white','Couleurs sol internes']
+			['T_Ground','Non','Sol',"Oui|Non"],
+			['T_Modelisation','Faces','Modélisation',"Squelette|Faces|Tubes"]
 		]
 		$surikat_zome = {} if not $surikat_zome
 		0.upto(config.length-1){ |i|
@@ -575,7 +456,7 @@ class RhombiZonaedrePolaire
 			if(config[i][3])
 				drops.push config[i][3]
 			else
-				drops.push nil
+				drops.push ''
 			end
 		}
 		begin
@@ -637,24 +518,14 @@ class RhombiZonaedrePolaire
 
 	def zome_dh
 		config = [	
-			# ['T_TYPE','ZDome','Type',[["Zome","ZDome"].join("|")]],
-			['T_TYPE','Zome','Type',[["Zome"].join("|")]],
 			['N_Cotes',10,'Côtés de Révolution'],
 			['N_Niveaux',5,'Niveaux en Hauteur'],
 			['L_Diametre',6000.mm,'Diamètre au sol'],
 			['L_Hauteur',3000.mm,'Hauteur au Sommet'],
-			# ['T_Tirants','Horizontaux','Tirants',[["Horizontaux","Aucun"].join("|")]],
-			['T_Tirants','Aucun','Tirants',[["Horizontaux","Aucun"].join("|")]],
+			['T_Tirants','Aucun','Tirants',"Horizontaux|Aucun"],
 			['L_RayonConnecteurs',150.mm,'Rayon des Connecteurs'],
-			['T_Ground','Non','Sol',[["Oui","Non"].join("|")]],
-			# ['T_Modelisation','Faces','Modélisation',[["Squelette","Faces","Tubes"].join("|")]]
-			['T_Modelisation','Squelette','Modélisation',[["Squelette","Faces","Tubes"].join("|")]]
-			# ['T_Tuiles2D','Oui','Tuiles En 2D',[["Non","Oui"].join("|")]],
-			# ['L_Tuilage',50.mm,'Chevauchement Tuiles'],
-			# ['RVB_BACK_SOL','green','Couleurs sol externes'],
-			# ['RVB_SOL','white','Couleurs sol internes'],
-			# ['RVB_BACK_FACES','green','Couleurs faces externes'],
-			# ['RVB_FACES','white','Couleurs faces internes']
+			['T_Ground','Non','Sol',"Oui|Non"],
+			['T_Modelisation','Squelette','Modélisation',"Squelette|Faces|Tubes"]
 		]
 		$surikat_zome = {} if not $surikat_zome
 		0.upto(config.length-1){ |i|
@@ -671,7 +542,7 @@ class RhombiZonaedrePolaire
 			if(config[i][3])
 				drops.push config[i][3]
 			else
-				drops.push nil
+				drops.push ''
 			end
 		}
 		begin
@@ -740,12 +611,10 @@ class RhombiZonaedrePolaire
 	end
 end
 end
-if( not file_loaded?(File.basename(__FILE__)) )
-	# UI.menu("Plugins").add_item("ZOME"){Surikat::RhombiZonaedrePolaire.generation('zome_dh')}
-	zomes_menu = UI.menu("Plugins").add_submenu("Zome")
-	zomes_menu.add_item("sur diametre et hauteur") { Surikat::RhombiZonaedrePolaire.generation('zome_dh') }
-    zomes_menu.add_item("sur angle et arrête") { Surikat::RhombiZonaedrePolaire.generation('zome_al') }
-    zomes_menu.add_item("sur angle et hauteur") { Surikat::RhombiZonaedrePolaire.generation('zome_ah') }
-    zomes_menu.add_item("sur angle et diametre") { Surikat::RhombiZonaedrePolaire.generation('zomes_ad') }
-	file_loaded(File.basename(__FILE__))
-end
+
+zomes_menu = UI.menu("Plugins").add_submenu("Zome")
+zomes_menu.add_item("sur diametre et hauteur") { Surikat::RhombiZonaedrePolaire.generation('zome_dh') }
+zomes_menu.add_item("sur angle et arrête") { Surikat::RhombiZonaedrePolaire.generation('zome_al') }
+zomes_menu.add_item("sur angle et hauteur") { Surikat::RhombiZonaedrePolaire.generation('zome_ah') }
+zomes_menu.add_item("sur angle et diametre") { Surikat::RhombiZonaedrePolaire.generation('zomes_ad') }
+file_loaded(File.basename(__FILE__))
