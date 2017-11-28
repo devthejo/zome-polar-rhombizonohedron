@@ -270,7 +270,7 @@ class RhombiZonaedrePolaire
 			['T_Ties','Horizontal','Ties',"Horizontal|None"],
 			['L_RayonConnecteurs',150.mm,'Radius of the connectors'],
 			['T_Ground','No','Ground',"Yes|No"],
-			['T_Modelisation','Faces','Modélisation',"Squelette|Faces|Tubes"]
+			['T_Modelisation','Faces','Modelisation',"Squelette|Faces|Tubes"]
 		]
 		$surikat_zome = {} if not $surikat_zome
 		0.upto(config.length-1){ |i|
@@ -291,7 +291,7 @@ class RhombiZonaedrePolaire
 			end
 		}
 		begin
-			results = UI.inputbox prompts,defaults,drops,'Zonohèdre Polaire based on Shape angle and Edges'
+			results = UI.inputbox prompts,defaults,drops,'Polar Zonohedron based on shape angle and edges'
 			return unless results
 			0.upto(config.length-1){ |i|
 				$surikat_zome[config[i][0]] = results[i]
@@ -311,7 +311,7 @@ class RhombiZonaedrePolaire
 		end
 		if($surikat_zome['T_Modelisation']=="Tubes")
 			begin
-				results_tubes = UI.inputbox ['Diamètre des Tubes'],[28.mm],[],'Modélisation Tubes'
+				results_tubes = UI.inputbox ['Diamètre des Tubes'],[28.mm],[],'Modelisation Tubes'
 				return unless results_tubes
 				$surikat_zome['L_TubesDiametre'] = results_tubes[0]
 				raise "Required a value not equal to none"  if ( $surikat_zome['L_TubesDiametre'] <= 0 )
@@ -349,11 +349,11 @@ class RhombiZonaedrePolaire
 			['N_Cotes',10,'Sides of rotation around the axis'],
 			['N_Niveaux',5,'Vertical Layer'],
 			['L_AngleDeForme',35.2643896827547,'Shape angle'],
-			['L_Hauteur',3000.mm,'Height au Sommet'],
+			['L_Hauteur',3000.mm,'Height at the top'],
 			['T_Ties','Horizontal','Ties',"Horizontal|None"],
-			['L_RayonConnecteurs',150.mm,'radius of the connectors'],
+			['L_RayonConnecteurs',150.mm,'Radius of the connectors'],
 			['T_Ground','No','Ground',"Yes|No"],
-			['T_Modelisation','Faces','Modélisation',"Squelette|Faces|Tubes"]
+			['T_Modelisation','Faces','Modelisation',"Squelette|Faces|Tubes"]
 		]
 		$surikat_zome = {} if not $surikat_zome
 		0.upto(config.length-1){ |i|
@@ -374,7 +374,7 @@ class RhombiZonaedrePolaire
 			end
 		}
 		begin
-			results = UI.inputbox prompts,defaults,drops,'RhombiZonaèdre Polaire sur Shape angle et Height'
+			results = UI.inputbox prompts,defaults,drops,'RhombiZonaèdre Polar by shapes angle and height'
 			return unless results
 			0.upto(config.length-1){ |i|
 				$surikat_zome[config[i][0]] = results[i]
@@ -393,7 +393,7 @@ class RhombiZonaedrePolaire
 		end
 		if($surikat_zome['T_Modelisation']=="Tubes")
 			begin
-				results_tubes = UI.inputbox ['Diamètre des Tubes'],[28.mm],[],'Modélisation Tubes'
+				results_tubes = UI.inputbox ['Diamètre des Tubes'],[28.mm],[],'Modelisation Tubes'
 				return unless results_tubes
 				$surikat_zome['L_TubesDiametre'] = results_tubes[0]
 				raise "Valeur non nulle requise"  if ( $surikat_zome['L_TubesDiametre'] <= 0 )
@@ -422,7 +422,7 @@ class RhombiZonaedrePolaire
 		
 		msg += "Bases: #{$surikat_zome['N_Cotes']} \n"
 		msg += "Layers: #{$surikat_zome['N_Niveaux']} \n"
-		msg += "Diamètre: #{retour2[0].inch} \n"
+		msg += "Diameter: #{retour2[0].inch} \n"
 		msg += "Height: #{retour2[1].inch} \n"
 		msg += "Shape angle: #{angle_forme.radians} \n"
 		msg += "Edges: #{hypotenus.inch} \n"
@@ -437,9 +437,9 @@ class RhombiZonaedrePolaire
 			['N_Niveaux',5,'Vertical Layer'],
 			['L_AngleDeForme',35.2643896827547,'Shape angle'],
 			['L_Diametre',6000.mm,'Ground diameter'],
-			['L_RayonConnecteurs',150.mm,'radius of the connectors'],
+			['L_RayonConnecteurs',150.mm,'Radius of the connectors'],
 			['T_Ground','No','Ground',"Yes|No"],
-			['T_Modelisation','Faces','Modélisation',"Squelette|Faces|Tubes"]
+			['T_Modelisation','Faces','Modelisation',"Squelette|Faces|Tubes"]
 		]
 		$surikat_zome = {} if not $surikat_zome
 		0.upto(config.length-1){ |i|
@@ -460,18 +460,18 @@ class RhombiZonaedrePolaire
 			end
 		}
 		begin
-			results = UI.inputbox prompts,defaults,drops,'RhombiZonaèdre Polaire sur Shape angle et Diamètre'
+			results = UI.inputbox prompts,defaults,drops,'Polar Zonohedron based on shape angle and diameter'
 			return unless results
 			0.upto(config.length-1){ |i|
 				$surikat_zome[config[i][0]] = results[i]
 			}
 			#<validation>
-			raise "Number of niveaux non nulle requis"  if ( $surikat_zome['N_Niveaux'] <= 0 )
-			raise "Minimum 2 niveaux requis pour un Zome cohérent"  if ( $surikat_zome['N_Niveaux'] < 2 )
-			raise "Number of côtés non nulle requis"  if( $surikat_zome['N_Cotes'] <= 0 )
-			raise "Minimum 3 côtés pour un Zome cohérent"  if ( $surikat_zome['N_Cotes'] < 3 )
-			raise "Diamètre non nulle requis"  if ( $surikat_zome['L_Diametre'] <= 0 )
-			raise "L'angle ne peux pas être à 90"  if ( $surikat_zome['L_AngleDeForme'] == 90 )
+			raise "Required a number of layers not equal to null"  if ( $surikat_zome['N_Niveaux'] <= 0 )
+			raise "Minimum 2 layers required for a coherent Zome"  if ( $surikat_zome['N_Niveaux'] < 2 )
+			raise "Required a number of sides not equal to null"  if( $surikat_zome['N_Cotes'] <= 0 )
+			raise "Minimum 3 sides required for a coherent Zome"  if ( $surikat_zome['N_Cotes'] < 3 )
+			raise "Required a diameter not equal to null"  if ( $surikat_zome['L_Diametre'] <= 0 )
+			raise "The angle can't be at 90"  if ( $surikat_zome['L_AngleDeForme'] == 90 )
 			#</validation>
 		rescue
 			UI.messagebox $!.message
@@ -479,7 +479,7 @@ class RhombiZonaedrePolaire
 		end
 		if($surikat_zome['T_Modelisation']=="Tubes")
 			begin
-				results_tubes = UI.inputbox ['Diamètre des Tubes'],[28.mm],[],'Modélisation Tubes'
+				results_tubes = UI.inputbox ['Diamètre des Tubes'],[28.mm],[],'Modelisation Tubes'
 				return unless results_tubes
 				$surikat_zome['L_TubesDiametre'] = results_tubes[0]
 				raise "Valeur non nulle requise"  if ( $surikat_zome['L_TubesDiametre'] <= 0 )
@@ -507,7 +507,7 @@ class RhombiZonaedrePolaire
 		
 		msg += "Bases: #{$surikat_zome['N_Cotes']} \n"
 		msg += "Layers: #{$surikat_zome['N_Niveaux']} \n"
-		msg += "Diamètre: #{$surikat_zome['L_Diametre'].inch} \n"
+		msg += "Diameter: #{$surikat_zome['L_Diametre'].inch} \n"
 		msg += "Height: #{retour2[1].inch} \n"
 		msg += "Shape angle: #{angle_forme.radians} \n"
 		msg += "Edges: #{hypotenus.inch} \n"
@@ -521,11 +521,11 @@ class RhombiZonaedrePolaire
 			['N_Cotes',10,'Sides of rotation around the axis'],
 			['N_Niveaux',5,'Vertical Layer'],
 			['L_Diametre',6000.mm,'Ground diameter'],
-			['L_Hauteur',3000.mm,'Height au Sommet'],
+			['L_Hauteur',3000.mm,'Height at the top'],
 			['T_Ties','None','Ties',"Horizontal|None"],
-			['L_RayonConnecteurs',150.mm,'radius of the connectors'],
+			['L_RayonConnecteurs',150.mm,'Radius of the connectors'],
 			['T_Ground','No','Ground',"Yes|No"],
-			['T_Modelisation','Squelette','Modélisation',"Squelette|Faces|Tubes"]
+			['T_Modelisation','Squelette','Modelisation',"Squelette|Faces|Tubes"]
 		]
 		$surikat_zome = {} if not $surikat_zome
 		0.upto(config.length-1){ |i|
@@ -546,18 +546,18 @@ class RhombiZonaedrePolaire
 			end
 		}
 		begin
-			results = UI.inputbox prompts,defaults,drops,'RhombiZonaèdre Polaire sur Diamètre et Height'
+			results = UI.inputbox prompts,defaults,drops,'Polar Zonohedron based on diameter and height'
 			return unless results
 			0.upto(config.length-1){ |i|
 				$surikat_zome[config[i][0]] = results[i]
 			}
 			#<validation>
-			raise "Number of niveaux non nulle requis"  if ( $surikat_zome['N_Niveaux'] <= 0 )
-			raise "Minimum 2 niveaux requis pour un Zome cohérent"  if ( $surikat_zome['N_Niveaux'] < 2 )
-			raise "Number of côtés non nulle requis"  if( $surikat_zome['N_Cotes'] <= 0 )
-			raise "Minimum 3 côtés pour un Zome cohérent"  if ( $surikat_zome['N_Cotes'] < 3 )
-			raise "Diamètre non nulle requis"  if ( $surikat_zome['L_Diametre'] <= 0 )
-			raise "Height non nulle requise"  if ( $surikat_zome['L_Hauteur'] <= 0 )
+			raise "Required a number of layers not equal to null"  if ( $surikat_zome['N_Niveaux'] <= 0 )
+			raise "Minimum 2 layers required for a coherent Zome"  if ( $surikat_zome['N_Niveaux'] < 2 )
+			raise "Required a number of sides not equal to null"  if( $surikat_zome['N_Cotes'] <= 0 )
+			raise "Minimum 3 sides required for a coherent Zome"  if ( $surikat_zome['N_Cotes'] < 3 )
+			raise "Diameter can't be equal to null"  if ( $surikat_zome['L_Diametre'] <= 0 )
+			raise "Required height not equal to null"  if ( $surikat_zome['L_Hauteur'] <= 0 )
 			#</validation>
 		rescue
 			UI.messagebox $!.message
@@ -565,7 +565,7 @@ class RhombiZonaedrePolaire
 		end
 		if($surikat_zome['T_Modelisation']=="Tubes")
 			begin
-				results_tubes = UI.inputbox ['Diamètre des Tubes'],[28.mm],[],'Modélisation Tubes'
+				results_tubes = UI.inputbox ['Diamètre des Tubes'],[28.mm],[],'Modelisation Tubes'
 				return unless results_tubes
 				$surikat_zome['L_TubesDiametre'] = results_tubes[0]
 				raise "Valeur non nulle requise"  if ( $surikat_zome['L_TubesDiametre'] <= 0 )
@@ -597,12 +597,12 @@ class RhombiZonaedrePolaire
 		
 		msg += "Bases: #{$surikat_zome['N_Cotes']} \n"
 		msg += "Layers: #{$surikat_zome['N_Niveaux']} \n"
-		msg += "Diamètre: #{$surikat_zome['L_Diametre'].inch} \n"
+		msg += "Diameter: #{$surikat_zome['L_Diametre'].inch} \n"
 		msg += "Height: #{$surikat_zome['L_Hauteur'].inch} \n"
 		msg += "Edges: #{hypotenus.inch} \n"
 		# msg += "Shape angle: #{asin(cosinus).radians} \n"
 		msg += "Shape angle: #{acos(sinus).radians} \n"
-		msg += "Angle entre l'axe et l'arrête du dernier niveaux: #{asin(sinus).radians} \n"
+		msg += "Angle between the axes and the edge of the top layer: #{asin(sinus).radians} \n"
 		
 		msg += retour2[2]
 		
@@ -613,8 +613,8 @@ end
 end
 
 zomes_menu = UI.menu("Plugins").add_submenu("Zome")
-zomes_menu.add_item("sur diametre et hauteur") { Surikat::RhombiZonaedrePolaire.generation('zome_dh') }
-zomes_menu.add_item("sur angle et arrête") { Surikat::RhombiZonaedrePolaire.generation('zome_al') }
-zomes_menu.add_item("sur angle et hauteur") { Surikat::RhombiZonaedrePolaire.generation('zome_ah') }
-zomes_menu.add_item("sur angle et diametre") { Surikat::RhombiZonaedrePolaire.generation('zomes_ad') }
+zomes_menu.add_item("By diameter and height") { Surikat::RhombiZonaedrePolaire.generation('zome_dh') }
+zomes_menu.add_item("By angle and edges") { Surikat::RhombiZonaedrePolaire.generation('zome_al') }
+zomes_menu.add_item("By angle and height") { Surikat::RhombiZonaedrePolaire.generation('zome_ah') }
+zomes_menu.add_item("By angle and diameter") { Surikat::RhombiZonaedrePolaire.generation('zomes_ad') }
 file_loaded(File.basename(__FILE__))
