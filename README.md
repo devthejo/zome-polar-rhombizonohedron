@@ -1,5 +1,6 @@
-# zome-polar-rhombizonahedron
-# Zome Sketchup Plugin - Rhombizonaèdre Polaire [![Zome ICON](https://raw.githubusercontent.com/takion/zome-polar-rhombizonahedron/master/img/zome-icon.png)](https://github.com/takion/zome-polar-rhombizonahedron#)
+# Zome Sketchup Plugin - Rhombizonaèdre Polaire
+
+[![Zome ICON](https://raw.githubusercontent.com/takion/zome-polar-rhombizonahedron/master/img/zome-icon.png)](https://github.com/takion/zome-polar-rhombizonahedron#)
 
 ## Installation EN
 
