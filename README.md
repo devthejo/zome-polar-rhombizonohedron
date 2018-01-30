@@ -26,4 +26,4 @@
 Developed by @Takion, translated by @ZuperNinja
 
 # See also
-https://github.com/takion/dome-diamond
+https://github.com/takion/dome-lozenge
