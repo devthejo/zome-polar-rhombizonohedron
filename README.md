@@ -23,4 +23,7 @@
 [![Zome Sample](https://raw.githubusercontent.com/takion/zome-polar-rhombizonahedron/master/img/zome-10-5.png)](https://github.com/takion/zome-polar-rhombizonahedron#)
 
 # About
-Made by @Takion, translated by @ZuperNinja
+Developed by @Takion, translated by @ZuperNinja
+
+# See also
+https://github.com/takion/dome-diamond
