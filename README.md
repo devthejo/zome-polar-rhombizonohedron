@@ -1,7 +1,7 @@
 # zome-polar-rhombizonahedron
 Zome Sketchup Plugin - Rhombizonaèdre Polaire
 
-Made by @Surikat, translated by @ZuperNinja
+Made by @Takion, translated by @ZuperNinja
 
 
 ## Installation FR - Windows 10 (in English bellow)
