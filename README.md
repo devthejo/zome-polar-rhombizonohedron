@@ -35,3 +35,6 @@ Made by @Takion, translated by @ZuperNinja
 **In sketchup : ** 
 1. Toolbar > window > preference > extension manager > install extension > open zome.rbz
 1. Toolbar > extension > zome
+
+
+[![Zome ICON](https://raw.githubusercontent.com/takion/zome-polar-rhombizonahedron/master/img/zome-icon.png)](https://github.com/takion/zome-polar-rhombizonahedron#)
