@@ -2,7 +2,7 @@
 
 require 'sketchup.rb'
 include Math
-module Surikat
+module Takion
 class RhombiZonaedrePolaire
 	def self.generation func
 		self.new func
@@ -599,8 +599,8 @@ end
 end
 
 zomes_menu = UI.menu("Plugins").add_submenu("Zome")
-zomes_menu.add_item("By diameter and height") { Surikat::RhombiZonaedrePolaire.generation('zome_dh') }
-zomes_menu.add_item("By angle and edges") { Surikat::RhombiZonaedrePolaire.generation('zome_al') }
-zomes_menu.add_item("By angle and height") { Surikat::RhombiZonaedrePolaire.generation('zome_ah') }
-zomes_menu.add_item("By angle and diameter") { Surikat::RhombiZonaedrePolaire.generation('zomes_ad') }
+zomes_menu.add_item("By diameter and height") { Takion::RhombiZonaedrePolaire.generation('zome_dh') }
+zomes_menu.add_item("By angle and edges") { Takion::RhombiZonaedrePolaire.generation('zome_al') }
+zomes_menu.add_item("By angle and height") { Takion::RhombiZonaedrePolaire.generation('zome_ah') }
+zomes_menu.add_item("By angle and diameter") { Takion::RhombiZonaedrePolaire.generation('zomes_ad') }
 file_loaded(File.basename(__FILE__))
