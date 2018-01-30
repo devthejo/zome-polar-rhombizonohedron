@@ -10,20 +10,6 @@ class RhombiZonaedrePolaire
 	def initialize func
 		eval("#{func}")
 	end
-	def seconds_2_dhms (secs) #from makefaces.rb 1.4 Smustard.com(tm) Ruby Script
-		seconds = secs % 60
-		time = secs.round
-		time /= 60
-		minutes = time % 60
-		time /= 60
-		hours = time % 24
-		days = time / 24
-		if (days > 0) then days = days.to_s<<" Jours(s), "  else days = " " end 
-		if (hours > 0) then hours = hours.to_s<<" Heures(s), " else hours = " " end 
-		if (minutes > 0) then minutes = minutes.to_s<< " Minute(s), " else minutes = " " end  
-		seconds = seconds.to_s<< " Seconde(s)." 
-		return (days<<hours<<minutes<<seconds).strip!
-    end
 	def start
 		$mo = Sketchup.active_model
 		Sketchup::set_status_text("Modélisation du Zome en cours ...")
