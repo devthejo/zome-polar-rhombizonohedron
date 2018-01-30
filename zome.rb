@@ -35,7 +35,7 @@ class RhombiZonaedrePolaire
 		$mo.commit_operation
 		if not $takion_z_l
 			UI.messagebox("\nZome Creator" <<
-			"\nLogiciel libre developped by Jo - jo@redcat.ninja" <<
+			"\OpenSource software developed by Jo - jo@redcat.ninja" <<
 			"\nhttps://github.com/takion/zome-polar-rhombizonahedron/", "Zome Creator - Open software")
 			$takion_z_l = true
 		end
