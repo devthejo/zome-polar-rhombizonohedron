@@ -1,4 +1,4 @@
-#https://github.com/surikat/zome-polar-rhombizonahedron jo@redcat.ninja
+#https://github.com/takion/zome-polar-rhombizonahedron jo@redcat.ninja
 
 require 'sketchup.rb'
 include Math
@@ -33,11 +33,11 @@ class RhombiZonaedrePolaire
 	end
 	def ending
 		$mo.commit_operation
-		if not $surikat_z_l
+		if not $takion_z_l
 			UI.messagebox("\nZome Creator" <<
 			"\nLogiciel libre developped by Jo - jo@redcat.ninja" <<
-			"\nhttps://github.com/surikat/zome-polar-rhombizonahedron/", "Zome Creator - Open software")
-			$surikat_z_l = true
+			"\nhttps://github.com/takion/zome-polar-rhombizonahedron/", "Zome Creator - Open software")
+			$takion_z_l = true
 		end
 	end
 	def add_note(msg)
@@ -54,17 +54,17 @@ class RhombiZonaedrePolaire
 		return area.inch
 	end
 	def draw_face(pts)
-		if($surikat_zome['T_Modelisation']=='Faces')
+		if($takion_zome['T_Modelisation']=='Faces')
 			face = $entities.add_face(pts)
-			face.back_material = $surikat_zome['RVB_BACK_FACES']
-			face.material = $surikat_zome['RVB_FACES']
+			face.back_material = $takion_zome['RVB_BACK_FACES']
+			face.material = $takion_zome['RVB_FACES']
 		end
-		if($surikat_zome['T_Modelisation']=='Squelette')
+		if($takion_zome['T_Modelisation']=='Squelette')
 			line = $entities.add_line( pts )
 		end
-		if($surikat_zome['T_Modelisation']=='Tubes')
+		if($takion_zome['T_Modelisation']=='Tubes')
 			line = $entities.add_line(pts)
-			create_tubes(line,$surikat_zome['L_TubesDiametre'])
+			create_tubes(line,$takion_zome['L_TubesDiametre'])
 		end
 	end
 	def create_tubes(line,radius)
@@ -204,7 +204,7 @@ class RhombiZonaedrePolaire
 					pt1 = points[i][j][1]
 					pt3 = points[i][j][3]
 					pt4 = points[i][j][0]
-					if($surikat_zome['T_Ties']=='Horizontal')
+					if($takion_zome['T_Ties']=='Horizontal')
 						if(i<niveaux)
 							pt2 = points[i][j][2]
 							faces.push [pt1,pt2,pt3] 
@@ -212,7 +212,7 @@ class RhombiZonaedrePolaire
 						faces.push [pt1,pt4,pt3]
 						faces.push [pt3,pt1,pt4] #tirants						
 					end
-					if($surikat_zome['T_Ties']=='None')
+					if($takion_zome['T_Ties']=='None')
 						if(i<niveaux)
 							pt2 = points[i][j][2]
 							faces.push [pt4,pt1,pt2,pt3]
@@ -227,10 +227,10 @@ class RhombiZonaedrePolaire
 		
 		diametre_r = (points[niveaux-1][0][2].distance [0,0,0]) *2
 		if(draw==true)
-			# if($surikat_zome['T_Tuiles2D']=='Yes')
-				# create_tiles $surikat_zome
+			# if($takion_zome['T_Tuiles2D']=='Yes')
+				# create_tiles $takion_zome
 			# end
-			msg += rapport_complet $surikat_zome
+			msg += rapport_complet $takion_zome
 		end
 		return [diametre_r,hauteur_r,msg]
 	end
@@ -272,9 +272,9 @@ class RhombiZonaedrePolaire
 			['T_Ground','No','Ground',"Yes|No"],
 			['T_Modelisation','Faces','Modelisation',"Squelette|Faces|Tubes"]
 		]
-		$surikat_zome = {} if not $surikat_zome
+		$takion_zome = {} if not $takion_zome
 		0.upto(config.length-1){ |i|
-			$surikat_zome[config[i][0]] = config[i][1] if not $surikat_zome[config[i][0]]
+			$takion_zome[config[i][0]] = config[i][1] if not $takion_zome[config[i][0]]
 		}
 		
 		results = nil
@@ -294,27 +294,27 @@ class RhombiZonaedrePolaire
 			results = UI.inputbox prompts,defaults,drops,'Polar Zonohedron based on shape angle and edges'
 			return unless results
 			0.upto(config.length-1){ |i|
-				$surikat_zome[config[i][0]] = results[i]
+				$takion_zome[config[i][0]] = results[i]
 			}
 			#<validation>
-			raise "Number of layers different from the number of needed sides"  if ( $surikat_zome['N_Niveaux'] == $surikat_zome['N_Cotes'] )
-			raise "Required a number of layers not equal to null"  if ( $surikat_zome['N_Niveaux'] <= 0 )
-			raise "Minimum 2 layers required for coherent Zome"  if ( $surikat_zome['N_Niveaux'] < 2 )
-			raise "Required a number of sides not equal to null"  if( $surikat_zome['N_Cotes'] <= 0 )
-			raise "Minimum 3 sides required for coherent Zome"  if ( $surikat_zome['N_Cotes'] < 3 )
-			raise "Required height not equal to null"  if ( $surikat_zome['L_Hauteur'] <= 0 )
-			raise "Angle can't be equal to 90"  if ( $surikat_zome['L_AngleDeForme'] == 90 )
+			raise "Number of layers different from the number of needed sides"  if ( $takion_zome['N_Niveaux'] == $takion_zome['N_Cotes'] )
+			raise "Required a number of layers not equal to null"  if ( $takion_zome['N_Niveaux'] <= 0 )
+			raise "Minimum 2 layers required for coherent Zome"  if ( $takion_zome['N_Niveaux'] < 2 )
+			raise "Required a number of sides not equal to null"  if( $takion_zome['N_Cotes'] <= 0 )
+			raise "Minimum 3 sides required for coherent Zome"  if ( $takion_zome['N_Cotes'] < 3 )
+			raise "Required height not equal to null"  if ( $takion_zome['L_Hauteur'] <= 0 )
+			raise "Angle can't be equal to 90"  if ( $takion_zome['L_AngleDeForme'] == 90 )
 			#</validation>
 		rescue
 			UI.messagebox $!.message
 			retry
 		end
-		if($surikat_zome['T_Modelisation']=="Tubes")
+		if($takion_zome['T_Modelisation']=="Tubes")
 			begin
 				results_tubes = UI.inputbox ['Diamètre des Tubes'],[28.mm],[],'Modelisation Tubes'
 				return unless results_tubes
-				$surikat_zome['L_TubesDiametre'] = results_tubes[0]
-				raise "Required a value not equal to none"  if ( $surikat_zome['L_TubesDiametre'] <= 0 )
+				$takion_zome['L_TubesDiametre'] = results_tubes[0]
+				raise "Required a value not equal to none"  if ( $takion_zome['L_TubesDiametre'] <= 0 )
 			rescue
 				UI.messagebox $!.message
 				retry
@@ -323,16 +323,16 @@ class RhombiZonaedrePolaire
 		
 		start
 		
-		angle_forme = $surikat_zome['L_AngleDeForme'].degrees
-		hypotenus = $surikat_zome['L_Arrete']
+		angle_forme = $takion_zome['L_AngleDeForme'].degrees
+		hypotenus = $takion_zome['L_Arrete']
 		msg = ""
 		
 		sinus = cos(angle_forme)
 		cosinus = sin(angle_forme)
-		retour = create_polarzonaedre(true,$surikat_zome['N_Cotes'],$surikat_zome['N_Niveaux'],sinus,cosinus,hypotenus)
+		retour = create_polarzonaedre(true,$takion_zome['N_Cotes'],$takion_zome['N_Niveaux'],sinus,cosinus,hypotenus)
 		
-		msg += "Sides: #{$surikat_zome['N_Cotes']} \n"
-		msg += "Layers: #{$surikat_zome['N_Niveaux']} \n"
+		msg += "Sides: #{$takion_zome['N_Cotes']} \n"
+		msg += "Layers: #{$takion_zome['N_Niveaux']} \n"
 		msg += "Diameter: #{retour[0].inch} \n"
 		msg += "Height: #{retour[1].inch} \n"
 		msg += "Shape angle: #{angle_forme.radians} \n"
@@ -355,9 +355,9 @@ class RhombiZonaedrePolaire
 			['T_Ground','No','Ground',"Yes|No"],
 			['T_Modelisation','Faces','Modelisation',"Squelette|Faces|Tubes"]
 		]
-		$surikat_zome = {} if not $surikat_zome
+		$takion_zome = {} if not $takion_zome
 		0.upto(config.length-1){ |i|
-			$surikat_zome[config[i][0]] = config[i][1] if not $surikat_zome[config[i][0]]
+			$takion_zome[config[i][0]] = config[i][1] if not $takion_zome[config[i][0]]
 		}
 		
 		results = nil
@@ -377,26 +377,26 @@ class RhombiZonaedrePolaire
 			results = UI.inputbox prompts,defaults,drops,'RhombiZonaèdre Polar by shapes angle and height'
 			return unless results
 			0.upto(config.length-1){ |i|
-				$surikat_zome[config[i][0]] = results[i]
+				$takion_zome[config[i][0]] = results[i]
 			}
 			#<validation>
-			raise "Required a number of layers not equal to null"  if ( $surikat_zome['N_Niveaux'] <= 0 )
-			raise "Minimum 2 layers required for coherent Zome"  if ( $surikat_zome['N_Niveaux'] < 2 )
-			raise "Required a number of sides not equal to null"  if( $surikat_zome['N_Cotes'] <= 0 )
-			raise "Minimum 3 sides required for coherent Zome"  if ( $surikat_zome['N_Cotes'] < 3 )
-			raise "Required height not equal to null"  if ( $surikat_zome['L_Hauteur'] <= 0 )
-			raise "Angle can't be 90"  if ( $surikat_zome['L_AngleDeForme'] == 90 )
+			raise "Required a number of layers not equal to null"  if ( $takion_zome['N_Niveaux'] <= 0 )
+			raise "Minimum 2 layers required for coherent Zome"  if ( $takion_zome['N_Niveaux'] < 2 )
+			raise "Required a number of sides not equal to null"  if( $takion_zome['N_Cotes'] <= 0 )
+			raise "Minimum 3 sides required for coherent Zome"  if ( $takion_zome['N_Cotes'] < 3 )
+			raise "Required height not equal to null"  if ( $takion_zome['L_Hauteur'] <= 0 )
+			raise "Angle can't be 90"  if ( $takion_zome['L_AngleDeForme'] == 90 )
 			#</validation>
 		rescue
 			UI.messagebox $!.message
 			retry
 		end
-		if($surikat_zome['T_Modelisation']=="Tubes")
+		if($takion_zome['T_Modelisation']=="Tubes")
 			begin
 				results_tubes = UI.inputbox ['Diamètre des Tubes'],[28.mm],[],'Modelisation Tubes'
 				return unless results_tubes
-				$surikat_zome['L_TubesDiametre'] = results_tubes[0]
-				raise "Valeur non nulle requise"  if ( $surikat_zome['L_TubesDiametre'] <= 0 )
+				$takion_zome['L_TubesDiametre'] = results_tubes[0]
+				raise "Valeur non nulle requise"  if ( $takion_zome['L_TubesDiametre'] <= 0 )
 			rescue
 				UI.messagebox $!.message
 				retry
@@ -407,21 +407,21 @@ class RhombiZonaedrePolaire
 		
 		msg = ""
 		
-		angle_forme = $surikat_zome['L_AngleDeForme'].degrees
+		angle_forme = $takion_zome['L_AngleDeForme'].degrees
 
-		adjacent = $surikat_zome['L_Hauteur']/$surikat_zome['N_Niveaux']
+		adjacent = $takion_zome['L_Hauteur']/$takion_zome['N_Niveaux']
 		hypotenus = adjacent/angle_forme
 		oppose = sqrt(hypotenus*hypotenus - adjacent*adjacent)
 		
 		sinus = cos(angle_forme)
 		cosinus = sin(angle_forme)
 		
-		retour1 = create_polarzonaedre(false,$surikat_zome['N_Cotes'],$surikat_zome['N_Niveaux'],sinus,cosinus,hypotenus)
-		hypotenus *= $surikat_zome['L_Hauteur']/retour1[1]
-		retour2 = create_polarzonaedre(true,$surikat_zome['N_Cotes'],$surikat_zome['N_Niveaux'],sinus,cosinus,hypotenus)
+		retour1 = create_polarzonaedre(false,$takion_zome['N_Cotes'],$takion_zome['N_Niveaux'],sinus,cosinus,hypotenus)
+		hypotenus *= $takion_zome['L_Hauteur']/retour1[1]
+		retour2 = create_polarzonaedre(true,$takion_zome['N_Cotes'],$takion_zome['N_Niveaux'],sinus,cosinus,hypotenus)
 		
-		msg += "Bases: #{$surikat_zome['N_Cotes']} \n"
-		msg += "Layers: #{$surikat_zome['N_Niveaux']} \n"
+		msg += "Bases: #{$takion_zome['N_Cotes']} \n"
+		msg += "Layers: #{$takion_zome['N_Niveaux']} \n"
 		msg += "Diameter: #{retour2[0].inch} \n"
 		msg += "Height: #{retour2[1].inch} \n"
 		msg += "Shape angle: #{angle_forme.radians} \n"
@@ -441,9 +441,9 @@ class RhombiZonaedrePolaire
 			['T_Ground','No','Ground',"Yes|No"],
 			['T_Modelisation','Faces','Modelisation',"Squelette|Faces|Tubes"]
 		]
-		$surikat_zome = {} if not $surikat_zome
+		$takion_zome = {} if not $takion_zome
 		0.upto(config.length-1){ |i|
-			$surikat_zome[config[i][0]] = config[i][1] if not $surikat_zome[config[i][0]]
+			$takion_zome[config[i][0]] = config[i][1] if not $takion_zome[config[i][0]]
 		}
 		
 		results = nil
@@ -463,26 +463,26 @@ class RhombiZonaedrePolaire
 			results = UI.inputbox prompts,defaults,drops,'Polar Zonohedron based on shape angle and diameter'
 			return unless results
 			0.upto(config.length-1){ |i|
-				$surikat_zome[config[i][0]] = results[i]
+				$takion_zome[config[i][0]] = results[i]
 			}
 			#<validation>
-			raise "Required a number of layers not equal to null"  if ( $surikat_zome['N_Niveaux'] <= 0 )
-			raise "Minimum 2 layers required for a coherent Zome"  if ( $surikat_zome['N_Niveaux'] < 2 )
-			raise "Required a number of sides not equal to null"  if( $surikat_zome['N_Cotes'] <= 0 )
-			raise "Minimum 3 sides required for a coherent Zome"  if ( $surikat_zome['N_Cotes'] < 3 )
-			raise "Required a diameter not equal to null"  if ( $surikat_zome['L_Diametre'] <= 0 )
-			raise "The angle can't be at 90"  if ( $surikat_zome['L_AngleDeForme'] == 90 )
+			raise "Required a number of layers not equal to null"  if ( $takion_zome['N_Niveaux'] <= 0 )
+			raise "Minimum 2 layers required for a coherent Zome"  if ( $takion_zome['N_Niveaux'] < 2 )
+			raise "Required a number of sides not equal to null"  if( $takion_zome['N_Cotes'] <= 0 )
+			raise "Minimum 3 sides required for a coherent Zome"  if ( $takion_zome['N_Cotes'] < 3 )
+			raise "Required a diameter not equal to null"  if ( $takion_zome['L_Diametre'] <= 0 )
+			raise "The angle can't be at 90"  if ( $takion_zome['L_AngleDeForme'] == 90 )
 			#</validation>
 		rescue
 			UI.messagebox $!.message
 			retry
 		end
-		if($surikat_zome['T_Modelisation']=="Tubes")
+		if($takion_zome['T_Modelisation']=="Tubes")
 			begin
 				results_tubes = UI.inputbox ['Diamètre des Tubes'],[28.mm],[],'Modelisation Tubes'
 				return unless results_tubes
-				$surikat_zome['L_TubesDiametre'] = results_tubes[0]
-				raise "Valeur non nulle requise"  if ( $surikat_zome['L_TubesDiametre'] <= 0 )
+				$takion_zome['L_TubesDiametre'] = results_tubes[0]
+				raise "Valeur non nulle requise"  if ( $takion_zome['L_TubesDiametre'] <= 0 )
 			rescue
 				UI.messagebox $!.message
 				retry
@@ -494,20 +494,20 @@ class RhombiZonaedrePolaire
 		
 		msg = ""
 		
-		angle_forme = $surikat_zome['L_AngleDeForme'].degrees
-		hypotenus = $surikat_zome['L_Diametre']/2/PI
+		angle_forme = $takion_zome['L_AngleDeForme'].degrees
+		hypotenus = $takion_zome['L_Diametre']/2/PI
 		
 		sinus = cos(angle_forme)
 		cosinus = sin(angle_forme)
 
-		retour1 = create_polarzonaedre(false,$surikat_zome['N_Cotes'],$surikat_zome['N_Niveaux'],sinus,cosinus,hypotenus)
+		retour1 = create_polarzonaedre(false,$takion_zome['N_Cotes'],$takion_zome['N_Niveaux'],sinus,cosinus,hypotenus)
 		
-		hypotenus *= $surikat_zome['L_Diametre']/retour1[0]	
-		retour2 = create_polarzonaedre(true,$surikat_zome['N_Cotes'],$surikat_zome['N_Niveaux'],sinus,cosinus,hypotenus)
+		hypotenus *= $takion_zome['L_Diametre']/retour1[0]	
+		retour2 = create_polarzonaedre(true,$takion_zome['N_Cotes'],$takion_zome['N_Niveaux'],sinus,cosinus,hypotenus)
 		
-		msg += "Bases: #{$surikat_zome['N_Cotes']} \n"
-		msg += "Layers: #{$surikat_zome['N_Niveaux']} \n"
-		msg += "Diameter: #{$surikat_zome['L_Diametre'].inch} \n"
+		msg += "Bases: #{$takion_zome['N_Cotes']} \n"
+		msg += "Layers: #{$takion_zome['N_Niveaux']} \n"
+		msg += "Diameter: #{$takion_zome['L_Diametre'].inch} \n"
 		msg += "Height: #{retour2[1].inch} \n"
 		msg += "Shape angle: #{angle_forme.radians} \n"
 		msg += "Edges: #{hypotenus.inch} \n"
@@ -527,9 +527,9 @@ class RhombiZonaedrePolaire
 			['T_Ground','No','Ground',"Yes|No"],
 			['T_Modelisation','Squelette','Modelisation',"Squelette|Faces|Tubes"]
 		]
-		$surikat_zome = {} if not $surikat_zome
+		$takion_zome = {} if not $takion_zome
 		0.upto(config.length-1){ |i|
-			$surikat_zome[config[i][0]] = config[i][1] if not $surikat_zome[config[i][0]]
+			$takion_zome[config[i][0]] = config[i][1] if not $takion_zome[config[i][0]]
 		}
 		
 		results = nil
@@ -549,26 +549,26 @@ class RhombiZonaedrePolaire
 			results = UI.inputbox prompts,defaults,drops,'Polar Zonohedron based on diameter and height'
 			return unless results
 			0.upto(config.length-1){ |i|
-				$surikat_zome[config[i][0]] = results[i]
+				$takion_zome[config[i][0]] = results[i]
 			}
 			#<validation>
-			raise "Required a number of layers not equal to null"  if ( $surikat_zome['N_Niveaux'] <= 0 )
-			raise "Minimum 2 layers required for a coherent Zome"  if ( $surikat_zome['N_Niveaux'] < 2 )
-			raise "Required a number of sides not equal to null"  if( $surikat_zome['N_Cotes'] <= 0 )
-			raise "Minimum 3 sides required for a coherent Zome"  if ( $surikat_zome['N_Cotes'] < 3 )
-			raise "Diameter can't be equal to null"  if ( $surikat_zome['L_Diametre'] <= 0 )
-			raise "Required height not equal to null"  if ( $surikat_zome['L_Hauteur'] <= 0 )
+			raise "Required a number of layers not equal to null"  if ( $takion_zome['N_Niveaux'] <= 0 )
+			raise "Minimum 2 layers required for a coherent Zome"  if ( $takion_zome['N_Niveaux'] < 2 )
+			raise "Required a number of sides not equal to null"  if( $takion_zome['N_Cotes'] <= 0 )
+			raise "Minimum 3 sides required for a coherent Zome"  if ( $takion_zome['N_Cotes'] < 3 )
+			raise "Diameter can't be equal to null"  if ( $takion_zome['L_Diametre'] <= 0 )
+			raise "Required height not equal to null"  if ( $takion_zome['L_Hauteur'] <= 0 )
 			#</validation>
 		rescue
 			UI.messagebox $!.message
 			retry
 		end
-		if($surikat_zome['T_Modelisation']=="Tubes")
+		if($takion_zome['T_Modelisation']=="Tubes")
 			begin
 				results_tubes = UI.inputbox ['Diamètre des Tubes'],[28.mm],[],'Modelisation Tubes'
 				return unless results_tubes
-				$surikat_zome['L_TubesDiametre'] = results_tubes[0]
-				raise "Valeur non nulle requise"  if ( $surikat_zome['L_TubesDiametre'] <= 0 )
+				$takion_zome['L_TubesDiametre'] = results_tubes[0]
+				raise "Valeur non nulle requise"  if ( $takion_zome['L_TubesDiametre'] <= 0 )
 			rescue
 				UI.messagebox $!.message
 				retry
@@ -580,25 +580,25 @@ class RhombiZonaedrePolaire
 		
 		msg = ""
 		
-		adjacent = $surikat_zome['L_Hauteur']/$surikat_zome['N_Niveaux']
+		adjacent = $takion_zome['L_Hauteur']/$takion_zome['N_Niveaux']
 		
-		oppose = $surikat_zome['L_Diametre']/$surikat_zome['N_Niveaux']/2
+		oppose = $takion_zome['L_Diametre']/$takion_zome['N_Niveaux']/2
 		hypotenus = sqrt(adjacent*adjacent + oppose*oppose)
 		sinus = oppose/hypotenus
 		cosinus = adjacent/hypotenus
-		retour1 = create_polarzonaedre(false,$surikat_zome['N_Cotes'],$surikat_zome['N_Niveaux'],sinus,cosinus,hypotenus)
-		ndiametre = $surikat_zome['L_Diametre']*($surikat_zome['L_Diametre']/retour1[0])
+		retour1 = create_polarzonaedre(false,$takion_zome['N_Cotes'],$takion_zome['N_Niveaux'],sinus,cosinus,hypotenus)
+		ndiametre = $takion_zome['L_Diametre']*($takion_zome['L_Diametre']/retour1[0])
 		
-		oppose = ndiametre/$surikat_zome['N_Niveaux']/2
+		oppose = ndiametre/$takion_zome['N_Niveaux']/2
 		hypotenus = sqrt(adjacent*adjacent + oppose*oppose)
 		sinus = oppose/hypotenus
 		cosinus = adjacent/hypotenus
-		retour2 = create_polarzonaedre(true,$surikat_zome['N_Cotes'],$surikat_zome['N_Niveaux'],sinus,cosinus,hypotenus)
+		retour2 = create_polarzonaedre(true,$takion_zome['N_Cotes'],$takion_zome['N_Niveaux'],sinus,cosinus,hypotenus)
 		
-		msg += "Bases: #{$surikat_zome['N_Cotes']} \n"
-		msg += "Layers: #{$surikat_zome['N_Niveaux']} \n"
-		msg += "Diameter: #{$surikat_zome['L_Diametre'].inch} \n"
-		msg += "Height: #{$surikat_zome['L_Hauteur'].inch} \n"
+		msg += "Bases: #{$takion_zome['N_Cotes']} \n"
+		msg += "Layers: #{$takion_zome['N_Niveaux']} \n"
+		msg += "Diameter: #{$takion_zome['L_Diametre'].inch} \n"
+		msg += "Height: #{$takion_zome['L_Hauteur'].inch} \n"
 		msg += "Edges: #{hypotenus.inch} \n"
 		# msg += "Shape angle: #{asin(cosinus).radians} \n"
 		msg += "Shape angle: #{acos(sinus).radians} \n"
