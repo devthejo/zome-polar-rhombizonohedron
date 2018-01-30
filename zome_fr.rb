@@ -266,7 +266,7 @@ class RhombiZonaedrePolaire
 			['N_Cotes',10,'Côtés de Révolution'],
 			['N_Niveaux',5,'Niveaux en Hauteur'],
 			['L_AngleDeForme',35.2643896827547,'Angle de forme'],
-			['L_Arrete',1.m,'Arrête'],
+			['L_Arrete',1.m,'Arête'],
 			['T_Tirants','Horizontaux','Tirants',"Horizontaux|Aucun"],
 			['L_RayonConnecteurs',150.mm,'Rayon des Connecteurs'],
 			['T_Ground','Non','Sol',"Oui|Non"],
@@ -291,7 +291,7 @@ class RhombiZonaedrePolaire
 			end
 		}
 		begin
-			results = UI.inputbox prompts,defaults,drops,'Zonohèdre Polaire sur Angle de forme et Arrête'
+			results = UI.inputbox prompts,defaults,drops,'Zonohèdre Polaire sur Angle de forme et Arête'
 			return unless results
 			0.upto(config.length-1){ |i|
 				$surikat_zome[config[i][0]] = results[i]
@@ -336,7 +336,7 @@ class RhombiZonaedrePolaire
 		msg += "Diamètre: #{retour[0].inch} \n"
 		msg += "Hauteur: #{retour[1].inch} \n"
 		msg += "Angle de forme: #{angle_forme.radians} \n"
-		msg += "Arrête: #{hypotenus.inch} \n"
+		msg += "Arête: #{hypotenus.inch} \n"
 		
 		msg += retour[2]
 		
@@ -425,7 +425,7 @@ class RhombiZonaedrePolaire
 		msg += "Diamètre: #{retour2[0].inch} \n"
 		msg += "Hauteur: #{retour2[1].inch} \n"
 		msg += "Angle de forme: #{angle_forme.radians} \n"
-		msg += "Arrête: #{hypotenus.inch} \n"
+		msg += "Arête: #{hypotenus.inch} \n"
 		msg += retour2[2]
 		add_note msg
 		ending
@@ -510,7 +510,7 @@ class RhombiZonaedrePolaire
 		msg += "Diamètre: #{$surikat_zome['L_Diametre'].inch} \n"
 		msg += "Hauteur: #{retour2[1].inch} \n"
 		msg += "Angle de forme: #{angle_forme.radians} \n"
-		msg += "Arrête: #{hypotenus.inch} \n"
+		msg += "Arête: #{hypotenus.inch} \n"
 		msg += retour2[2]
 		add_note msg
 		ending
@@ -599,10 +599,10 @@ class RhombiZonaedrePolaire
 		msg += "Niveaux: #{$surikat_zome['N_Niveaux']} \n"
 		msg += "Diamètre: #{$surikat_zome['L_Diametre'].inch} \n"
 		msg += "Hauteur: #{$surikat_zome['L_Hauteur'].inch} \n"
-		msg += "Arrête: #{hypotenus.inch} \n"
+		msg += "Arête: #{hypotenus.inch} \n"
 		# msg += "Angle de forme: #{asin(cosinus).radians} \n"
 		msg += "Angle de forme: #{acos(sinus).radians} \n"
-		msg += "Angle entre l'axe et l'arrête du dernier niveaux: #{asin(sinus).radians} \n"
+		msg += "Angle entre l'axe et l'arête du dernier niveaux: #{asin(sinus).radians} \n"
 		
 		msg += retour2[2]
 		
@@ -614,7 +614,7 @@ end
 
 zomes_menu = UI.menu("Plugins").add_submenu("Zome")
 zomes_menu.add_item("sur diametre et hauteur") { Surikat::RhombiZonaedrePolaire.generation('zome_dh') }
-zomes_menu.add_item("sur angle et arrête") { Surikat::RhombiZonaedrePolaire.generation('zome_al') }
+zomes_menu.add_item("sur angle et arête") { Surikat::RhombiZonaedrePolaire.generation('zome_al') }
 zomes_menu.add_item("sur angle et hauteur") { Surikat::RhombiZonaedrePolaire.generation('zome_ah') }
 zomes_menu.add_item("sur angle et diametre") { Surikat::RhombiZonaedrePolaire.generation('zomes_ad') }
 file_loaded(File.basename(__FILE__))
