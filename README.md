@@ -1,4 +1,4 @@
-# Zome Sketchup Plugin - Rhombizonaèdre Polaire
+# Zome Sketchup Plugin - Zonaèdre Polaire
 
 [![Zome ICON](https://raw.githubusercontent.com/takion/zome-polar-rhombizonahedron/master/img/zome-icon.png)](https://github.com/takion/zome-polar-rhombizonahedron#)
 
@@ -15,10 +15,10 @@
 
 ### SketchUp 2017
 1. Télécharger et installer SketchUp: https://www.sketchup.com/fr/download/all
-2. Télécharger le plugin : https://github.com/takion/zome-polar-rhombizonahedron/raw/master/ZomeFr.rbz
+2. Télécharger le plugin : https://github.com/takion/zome-polar-rhombizonahedron/raw/master/Zome.rbz
 3. Ouvrir sketchup
-4. Barre de menu > fenêtre > gestionnaire d'extensions > installer l'extension > sélectionner ZomeFr.rbz
-5. Barre de menu > extensions > zome > choisir configuration voulue et PAF !
+4. Barre de menu > fenêtre > gestionnaire d'extensions > installer l'extension > sélectionner Zome.rbz
+5. Barre de menu > extensions > zome > choisir configuration voulue et voilà !
 
 [![Zome Sample](https://raw.githubusercontent.com/takion/zome-polar-rhombizonahedron/master/img/zome-10-5.png)](https://github.com/takion/zome-polar-rhombizonahedron#)
 
