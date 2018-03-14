@@ -13,7 +13,7 @@ module Takion
     end
     
     zome_extension = SketchupExtension.new('Zome', 'Zome/main.rb')
-    zome_extension.version = '1.2.4'
+    zome_extension.version = '1.3.0'
     zome_extension.copyright = '2018'
     zome_extension.description = LH['Zome Creator - PolarZonahedron']
     zome_extension.creator = 'Jo Takion <jo@redcat.ninja>'
