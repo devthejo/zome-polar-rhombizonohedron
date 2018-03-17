@@ -1,10 +1,10 @@
-"Zome Creator - PolarZonahedron"="Créateur de Zome - RhombiZonaèdre Polaire";
+"Zome Creator - PolarZonohedron"="Créateur de Zome - RhombiZonaèdre Polaire";
 "by diameter and height"="par diamètre et hauteur";
 "by angle and edges"="par angle et arête";
 "by angle and height"="par angle et hauteur";
 "by angle and diameter"="angle et diametre";
 "Zome modelisation in progress..."="Modélisation du Zome en cours ...";
-"PolarZonahedron - Structure Processing"="RhombiZonaèdre Polaire - Modélisation de la Structure";
+"PolarZonohedron - Structure Processing"="RhombiZonaèdre Polaire - Modélisation de la Structure";
 "Faces"="Face";
 "Squelette"="Squelette";
 "Horizontal"="Horizontal";
@@ -47,8 +47,8 @@
 "Height at the top"="Hauteur au Sommet";
 "Horizontal|None"="Horizontal|Aucun";
 "Angle between the axes and the edge of the top layer"="Angle entre l'axe et l'arête du dernier niveaux";
-"Polar Zonahedron"="RhombiZonaèdre Polaire";
-"PolarZonahedron by shapes angle and height"="Zonaèdre Polaire sur Angle de forme et Hauteur";
-"PolarZonahedron by shapes angle and diameter"="Zonaèdre Polaire sur Angle de forme et Diamètre";
+"Polar Zonohedron"="RhombiZonaèdre Polaire";
+"PolarZonohedron by shapes angle and height"="Zonaèdre Polaire sur Angle de forme et Hauteur";
+"PolarZonohedron by shapes angle and diameter"="Zonaèdre Polaire sur Angle de forme et Diamètre";
 "Polar Zonohedron based on diameter and height"="Zonaèdre Polaire sur Diamètre et Hauteur";
-"Polar Zonahedron based on shape angle and edges"="Zonaèdre Polaire sur Angle de forme et Arête";
+"Polar Zonohedron based on shape angle and edges"="Zonaèdre Polaire sur Angle de forme et Arête";

@@ -1,4 +1,4 @@
-#https://github.com/takion/zome-polar-rhombizonahedron jo@redcat.ninja
+#https://github.com/takion/zome-polar-rhombizonohedron jo@redcat.ninja
 
 require 'sketchup.rb'
 module Takion
@@ -28,7 +28,7 @@ module Takion
 			def start
 				@mo = Sketchup.active_model
 				Sketchup::set_status_text(LH["Zome modelisation in progress..."])
-				@mo.start_operation LH["PolarZonahedron - Structure Processing"]
+				@mo.start_operation LH["PolarZonohedron - Structure Processing"]
 				@t1 = Time.now
 				@entities = @mo.active_entities.add_group.entities
 			end
@@ -151,7 +151,7 @@ module Takion
 				#msg += " "+LH["Segments total length"]+": #{segments_lenth} \n"
 				msg += " "+LH["Number of Ties"]+": #{@tirants_nb} \n"
 				
-				msg += "\n© "+LH["Zome Creator - OpenSource software developed by Jo"]+" - jo@redcat.ninja \nhttps://github.com/takion/zome-polar-rhombizonahedron/"
+				msg += "\n© "+LH["Zome Creator - OpenSource software developed by Jo"]+" - jo@redcat.ninja \nhttps://github.com/takion/zome-polar-rhombizonohedron/"
 				
 				return msg
 			end
@@ -184,7 +184,7 @@ module Takion
 					end
 				}
 				begin
-					results = UI.inputbox prompts,defaults,drops,LH['Polar Zonahedron based on shape angle and edges']
+					results = UI.inputbox prompts,defaults,drops,LH['Polar Zonohedron based on shape angle and edges']
 					return unless results
 					0.upto(config.length-1){ |i|
 						@gen_zome[config[i][0]] = results[i]
@@ -254,7 +254,7 @@ module Takion
 					end
 				}
 				begin
-					results = UI.inputbox prompts,defaults,drops,LH['PolarZonahedron by shapes angle and height']
+					results = UI.inputbox prompts,defaults,drops,LH['PolarZonohedron by shapes angle and height']
 					return unless results
 					0.upto(config.length-1){ |i|
 						@gen_zome[config[i][0]] = results[i]
@@ -330,7 +330,7 @@ module Takion
 					end
 				}
 				begin
-					results = UI.inputbox prompts,defaults,drops,LH['PolarZonahedron by shapes angle and diameter']
+					results = UI.inputbox prompts,defaults,drops,LH['PolarZonohedron by shapes angle and diameter']
 					return unless results
 					0.upto(config.length-1){ |i|
 						@gen_zome[config[i][0]] = results[i]
@@ -402,7 +402,7 @@ module Takion
 					end
 				}
 				begin
-					results = UI.inputbox prompts,defaults,drops,LH['Polar Zonahedron based on diameter and height']
+					results = UI.inputbox prompts,defaults,drops,LH['Polar Zonohedron based on diameter and height']
 					return unless results
 					0.upto(config.length-1){ |i|
 						@gen_zome[config[i][0]] = results[i]
