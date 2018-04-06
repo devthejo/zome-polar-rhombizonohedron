@@ -54,7 +54,7 @@ module Takion
 					face.back_material = @gen_zome['RVB_BACK_FACES']
 					face.material = @gen_zome['RVB_FACES']
 				end
-				if(@gen_zome['T_Modelisation']==LH['Squelette'])
+				if(@gen_zome['T_Modelisation']==LH['Skeleton'])
 					line = @entities.add_line( pts )
 				end
 			end
@@ -163,7 +163,7 @@ module Takion
 					['L_Arrete',1.m,LH['Edges']],
 					['T_Ties',LH['Horizontal'],LH['Ties'],LH["Horizontal|None"]],
 					['T_Ground',LH['No'],LH['Ground'],LH["Yes|No"]],
-					['T_Modelisation',LH['Faces'],LH['Modelisation'],LH["Squelette|Faces"]]
+					['T_Modelisation',LH['Faces'],LH['Modelisation'],LH["Skeleton|Faces"]]
 				]
 				@gen_zome = {} if not @gen_zome
 				0.upto(config.length-1){ |i|
@@ -233,7 +233,7 @@ module Takion
 					['L_Hauteur',3000.mm,LH['Height at the top']],
 					['T_Ties',LH['Horizontal'],LH['Ties'],LH["Horizontal|None"]],
 					['T_Ground',LH['No'],LH['Ground'],LH["Yes|No"]],
-					['T_Modelisation',LH['Faces'],LH['Modelisation'],LH["Squelette|Faces"]]
+					['T_Modelisation',LH['Faces'],LH['Modelisation'],LH["Skeleton|Faces"]]
 				]
 				@gen_zome = {} if not @gen_zome
 				0.upto(config.length-1){ |i|
@@ -309,7 +309,7 @@ module Takion
 					['L_Diametre',6000.mm,LH['Ground diameter']],
 					['T_Ties',LH['Horizontal'],LH['Ties'],LH["Horizontal|None"]],
 					['T_Ground',LH['No'],LH['Ground'],LH["Yes|No"]],
-					['T_Modelisation',LH['Faces'],LH['Modelisation'],LH["Squelette|Faces"]]
+					['T_Modelisation',LH['Faces'],LH['Modelisation'],LH["Skeleton|Faces"]]
 				]
 				@gen_zome = {} if not @gen_zome
 				0.upto(config.length-1){ |i|
@@ -381,7 +381,7 @@ module Takion
 					['L_Hauteur',3000.mm,LH['Height at the top']],
 					['T_Ties',LH['None'],LH['Ties'],LH["Horizontal|None"]],
 					['T_Ground',LH['No'],LH['Ground'],LH["Yes|No"]],
-					['T_Modelisation',LH['Faces'],LH['Modelisation'],LH["Squelette|Faces"]]
+					['T_Modelisation',LH['Faces'],LH['Modelisation'],LH["Skeleton|Faces"]]
 				]
 				@gen_zome = {} if not @gen_zome
 				0.upto(config.length-1){ |i|

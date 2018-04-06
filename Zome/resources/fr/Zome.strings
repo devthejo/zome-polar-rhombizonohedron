@@ -6,7 +6,7 @@
 "Zome modelisation in progress..."="Modélisation du Zome en cours ...";
 "PolarZonohedron - Structure Processing"="RhombiZonaèdre Polaire - Modélisation de la Structure";
 "Faces"="Face";
-"Squelette"="Squelette";
+"Skeleton"="Squelette";
 "Horizontal"="Horizontal";
 "None"="Aucun";
 "Sides"="Côtés";
@@ -31,7 +31,7 @@
 "Ground"="Sol";
 "Faces"="Faces";
 "Modelisation"="Modélisation";
-"Squelette|Faces"="Squelette|Faces";
+"Skeleton|Faces"="Squelette|Faces";
 "Number of layers different from the number of needed sides"="Nombre de côtés non nulle requis";
 "Required a number of layers not equal to null"="Nombre de niveaux non nulle requis";
 "Minimum 2 layers required for coherent Zome"="Minimum 2 niveaux pour un Zome cohérent";
